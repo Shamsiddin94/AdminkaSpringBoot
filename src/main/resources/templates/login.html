@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head><!--
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="/assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/assets/html5shiv.js"></script>
+    <script src="/assets/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Font -->
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">-->
+    <link rel="stylesheet" href="/assets/family.css">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="col-md-4 col-md-offset-4">
+        <div >
+            <a th:href="@{/login?lang=uzb}">Uzb</a>
+            &nbsp;|&nbsp;
+            <a th:href="@{/login?lang=en}">Eng</a>
+            &nbsp;|&nbsp;
+            <a th:href="@{/login?lang=rus}">Rus</a>
+            &nbsp;|&nbsp;
+            <a th:href="@{/login?lang=uz}">Kiril</a>
+        </div>
+        <form class="form-signin" name="f" th:action="@{/login}" method="post">
+
+            <div class="text-center mb-4">
+                <h1 class="h3 mb-3 font-weight-normal"><span th:text="#{label.signIn}"></span></h1>
+            </div>
+
+            <div class="form-label-group">
+                <label for="username"> <strong th:utext="#{label.username}"></strong></label>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+                <input type="text"
+                       name="username"
+                       id="username"
+                       class="form-control"
+                       placeholder="Enter username"
+                       required autofocus>
+            </div>
+
+            <div class="form-label-group">
+                <label for="password" ><strong th:utext="#{label.password}"></strong></label>
+
+                <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Password"
+                        required>
+
+
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                <strong th:utext="#{label.signIn}"></strong></button>
+
+            <p><a href="/home" class="mr-5"> Home</a> <a href="/register"> Register</a></p>
+            <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+        </form>
+
+    </div>
+
+</div>
+
+<script src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+<!-- Bootstrap 3.3.7 -->
+<script src="/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    function validate() {
+        if (document.f.username.value == "" && document.f.password.value == "") {
+            alert("Username and password are required");
+            document.f.username.focus();
+            return false;
+        }
+        if (document.f.username.value == "") {
+            alert("Username is required");
+            document.f.username.focus();
+            return false;
+        }
+        if (document.f.password.value == "") {
+            alert("Password is required");
+            document.f.password.focus();
+            return false;
+        }
+    }
+</script>
+
+</body>
+</html>
